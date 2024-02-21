@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scenes 1\Assets\Scripts\Alarm.cs" />
     <Compile Include="Assets\Scenes 1\Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scenes 1\Assets\Scripts\Detector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
