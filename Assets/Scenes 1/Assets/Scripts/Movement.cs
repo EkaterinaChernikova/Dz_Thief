@@ -15,7 +15,6 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-
     }
 
     private void Update()
