@@ -19,34 +19,14 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) 
-            || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        transform.Translate(Vector3.forward * Input.GetAxis("Vertical") * _speed * Time.deltaTime);
+        transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * _rotationSpeed * Time.deltaTime);
+
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             _animationSwitch = 0.05f;
         }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward * _speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * _speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.down * _rotationSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.S) == false
-            && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
+        else
         {
             _animationSwitch = 0.0f;
         }

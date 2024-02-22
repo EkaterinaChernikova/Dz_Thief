@@ -8,13 +8,13 @@ public class Alarm : MonoBehaviour
 
     private float _minVolume = 0.0f;
     private float _maxVolume = 1.0f;
-    private float _targetVolume;
+    private bool _isAlarmOn;
 
     private Coroutine _alarmSound; 
 
     private IEnumerator ChangeVolume(float targetVolume)
     {
-        TurnSoundOnOff();
+        TurnSoundOn();
 
         while (_audioSource.volume != targetVolume)
         {
@@ -23,30 +23,42 @@ public class Alarm : MonoBehaviour
             yield return null;
         }
 
-        TurnSoundOnOff();
+        TurnSoundOff();
     }
 
-    private void TurnSoundOnOff()
+    private void TurnSoundOn()
     {
         if (_audioSource.isPlaying == false)
         {
             _audioSource.Play();
         }
-        else if (_audioSource.volume == _minVolume)
+    }
+
+    private void TurnSoundOff()
+    {
+        if (_audioSource.volume == _minVolume)
         {
             _audioSource.Stop();
         }
     }
 
-    public void SetAlarm(bool isOn)
+    public void SetAlarmOn()
     {
-        _targetVolume = isOn ? _maxVolume : _minVolume;
-
         if (_alarmSound != null)
         {
             StopCoroutine(_alarmSound);
         }
 
-        _alarmSound = StartCoroutine(ChangeVolume(_targetVolume));
+        _alarmSound = StartCoroutine(ChangeVolume(_maxVolume));
+    }
+
+    public void SetAlarmOff()
+    {
+        if (_alarmSound != null)
+        {
+            StopCoroutine(_alarmSound);
+        }
+
+        _alarmSound = StartCoroutine(ChangeVolume(_minVolume));
     }
 }

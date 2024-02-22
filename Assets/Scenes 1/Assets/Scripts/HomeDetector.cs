@@ -8,7 +8,7 @@ public class HomeDetector : MonoBehaviour
     {
         if (other.TryGetComponent<Movement>(out Movement component) == true)
         {
-            _alarm.SetAlarm(true);
+            _alarm.SetAlarmOn();
         }
     }
 
@@ -16,7 +16,7 @@ public class HomeDetector : MonoBehaviour
     {
         if (other.TryGetComponent<Movement>(out Movement component) == true)
         {
-            _alarm.SetAlarm(false);
+            _alarm.SetAlarmOff();
         }
     }
 }
